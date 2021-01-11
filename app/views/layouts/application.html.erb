@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Git</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js' %>
+    <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js' %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' %>
+
+  </head>
+  <style>
+
+  </style>
+  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <h5 class="my-0 mr-md-auto font-weight-normal">My Git</h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+
+      <% if user_signed_in? %>
+        <div class="d-flex">
+          <div class="p-2 text-succes`s">
+            Logged in as <%= current_user.email %>
+          </div>
+          <%= link_to "Home", root_path, method: :get, :class => 'btn btn-primary mr-2' %>
+          <%= link_to "Search", search_page_path, method: :get, :class => 'btn btn-primary mr-2' %>
+          <%= form_for(:users, :url => destroy_user_session_path, method: :delete) do |f| %>
+            <button type="submit" class="btn btn-primary">Logout</button>
+          <% end %>
+        </div>
+
+      <% else %>
+        <%= link_to "Register", new_user_registration_path, method: :get, :class => 'btn btn-primary' %>
+        <%= link_to "Login", new_user_session_path, method: :get, :class => 'btn btn-primary' %>
+      <% end %>
+    </nav>
+  </div>
+  <body>
+  <%= yield %>
+  </body>
+</html>
