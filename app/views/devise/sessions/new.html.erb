@@ -3,9 +3,9 @@
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-    <% if flash[:notice].present? %>
-      <p class="alert alert-success"><%= flash[:notice] %>sss</p>
-    <% end %>
+    <%# if flash[:notice].present? %>
+<!--      <p class="alert alert-success"><%#= flash[:notice] %></p>-->
+    <%# end %>
 
     <% if flash[:alert].present? %>
       <p class="alert alert-danger"><%= flash[:alert] %></p>
