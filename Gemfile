@@ -35,13 +35,17 @@ gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 
-gem 'mysql2'
+gem 'mysql2', :group => :development
 
-gem 'devise'
+gem 'devise', :group => :development
 
-gem "octokit", "~> 4.0"
+gem "octokit", "~> 4.0", :group => :development
 
 gem 'dotenv-rails', groups: [:development, :test]
+
+gem "erb2haml", :group => :development
+
+gem "haml", :group => :development
 
 gem 'bootsnap', '>= 1.1.0', require: false
 

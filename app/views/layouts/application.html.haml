@@ -1,0 +1,29 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title My Git
+    = csrf_meta_tags
+    = csp_meta_tag
+    = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'
+    = javascript_include_tag 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js'
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'
+  :css
+
+  %body
+    .d-flex.flex-column.flex-md-row.align-items-center.p-3.px-md-4.mb-3.bg-white.border-bottom.shadow-sm
+      %h5.my-0.mr-md-auto.font-weight-normal My Git
+      %nav.my-2.my-md-0.mr-md-3
+        - if user_signed_in?
+          .d-flex
+            .p-2{:class => "text-succes`s"}
+              Logged in as #{current_user.email}
+            = link_to "Home", root_path, method: :get, :class => 'btn btn-primary mr-2'
+            = link_to "Search", search_page_path, method: :get, :class => 'btn btn-primary mr-2'
+            = form_for(:users, :url => destroy_user_session_path, method: :delete) do |f|
+              %button.btn.btn-primary{:type => "submit"} Logout
+        - else
+          = link_to "Register", new_user_registration_path, method: :get, :class => 'btn btn-primary'
+          = link_to "Login", new_user_session_path, method: :get, :class => 'btn btn-primary'
+    = yield
