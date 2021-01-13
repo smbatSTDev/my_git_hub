@@ -1,6 +1,8 @@
 .container.text-center.mx-auto
   = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-    = render "devise/shared/error_messages", resource: resource
+    - if flash[:errors]
+      - flash[:errors].each do |msg|
+        .alert.alert-danger=msg
     .card{style: "width: 40rem;margin:auto"}
       .card-header
         Profile Information
@@ -24,7 +26,6 @@
           Password Confirmation
           = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control'
         %li.list-group-item
-          Current Password
           = f.password_field :current_password, autocomplete: "current-password", class: 'form-control'
           = f.submit "Update", class: 'btn btn-primary mt-2'
 

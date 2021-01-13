@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => {registrations: "users"},
-             :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register", edit: 'profile' }
+             :path => '', :path_names => {  edit: 'profile' }
 
   root 'home#index'
   get 'git-search-result', to: 'git#index', as: 'search_page'
