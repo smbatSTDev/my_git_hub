@@ -1,5 +1,6 @@
 - if resource.errors.any?
   #error_explanation
-    %ul
+    %ul.list-group.list-group-flush
       - resource.errors.full_messages.each do |message|
-        %li.alert.alert-danger= message
+        %li.list-group-item
+          .container.alert.alert-danger=message
