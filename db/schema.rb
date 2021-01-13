@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_12_132006) do
+ActiveRecord::Schema.define(version: 2021_01_13_140801) do
 
   create_table "favorite_repositories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2021_01_12_132006) do
     t.string "email", default: "", null: false
     t.string "gender"
     t.date "birth_date"
+    t.string "git_access_token"
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"

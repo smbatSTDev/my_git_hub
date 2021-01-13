@@ -15,6 +15,9 @@
           Birth Date
           = f.date_field(:birth_date, options = {:class => 'form-control'})
         %li.list-group-item
+          Github access token
+          = f.text_field(:git_access_token, options = {:class => 'form-control'})
+        %li.list-group-item
           Password
           = f.password_field :password, autocomplete: "new-password", class: 'form-control'
         %li.list-group-item
