@@ -26,6 +26,7 @@
           Password Confirmation
           = f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control'
         %li.list-group-item
+          Current Password
           = f.password_field :current_password, autocomplete: "current-password", class: 'form-control'
           = f.submit "Update", class: 'btn btn-primary mt-2'
 

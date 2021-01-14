@@ -1,5 +1,57 @@
 class GitController < ApplicationController
+  before_action :validate_create_repository_params, only: :create_repository
+
+
   def index
+
+  end
+
+  def get_user_repositories
+    client = get_git_client
+    repositories = client.repos
+    render "git/repositories", locals: {repositories: repositories}
+  end
+
+  def new_repository
+
+  end
+
+  def create_repository
+    repository_name = params[:repo_name]
+    repository_type = params[:repo_type]
+
+    if repository_type == '1'
+      is_private = true
+    else
+      is_private = false
+    end
+
+    begin
+      client = get_git_client
+      client.create_repository repository_name, {private: is_private}
+    render json: {success: 1}
+    rescue => error
+      render json: {
+          error: 1,
+          message: error.message
+      }
+    end
+  end
+
+  def delete_repository
+    repo_name = params[:repo_name]
+
+    begin
+      client = get_git_client
+      client.delete_repository repo_name
+
+      render json: {success: 1}
+    rescue => error
+      render json: {
+          error: 1,
+          message: error.message
+      }
+    end
 
   end
 
@@ -7,7 +59,7 @@ class GitController < ApplicationController
     # TODO change searching limit for the user
     # TODO auth 1 time
 
-    client = Octokit::Client.new(access_token: ENV['GIT_ACCESS_TOKEN'])
+    client = get_git_client
     search_query = params[:q]
     if params[:page]
       page = params[:page]
@@ -71,6 +123,18 @@ class GitController < ApplicationController
     user_repositories = FavoriteRepository.where(user_id: user_id).pluck(:repo_id)
 
     render json: user_repositories
+  end
+
+  def validate_create_repository_params
+    if params.has_key?(:repo_name)
+      if params[:repo_name] == ''
+        render json: {
+            error: 1,
+            message: 'Repository name is required'
+        }
+      end
+    end
+
   end
 
 end

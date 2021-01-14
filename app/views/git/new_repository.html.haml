@@ -1,0 +1,15 @@
+.container
+  %form#create_repository{style: "width: 40rem;margin:auto"}
+    .alert.alert-danger.d-none#create_repo_error_messages
+    .form-group
+      %label Repository Name
+      %input#exampleInputEmail1.form-control{"aria-describedby" => "repo-name", placeholder: "Enter Your Repository Code", type: "text", name: 'repo_name'}/
+    .form-group
+      %label Repository Type
+      .form-check
+        %input#is_private.form-check-input{type: "checkbox", value: "1"}/
+        %label.form-check-label{for: "is_private"}
+          Private
+    %button.btn.btn-primary{type: "submit"} Submit
+
+= javascript_include_tag 'github/github', defer: 'defer'

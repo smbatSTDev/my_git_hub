@@ -143,4 +143,58 @@ $(document).on('change', '#is_favorite_repository' , function(){
 })
 
 
+// create git repository
 
+$('#create_repository').on('submit', function (e) {
+    e.preventDefault()
+    let repo_name = $('input[name=repo_name]').val()
+    let is_private = $('input[type=checkbox]')
+    let repo_type = ''
+    if (is_private.is(':checked')){
+        repo_type = is_private.val()
+    }else{
+        repo_type = 0
+    }
+
+    $('#create_repo_error_messages').addClass('d-none')
+
+    axios.post('create-repository', {
+        repo_name: repo_name,
+        repo_type: repo_type,
+        authenticity_token: $('[name="csrf-token"]')[0].content
+
+    }).then(function (response) {
+        if(response.data.success === 1){
+            window.location.href = 'repositories'
+        }
+        else if(response.data.error === 1){
+            $('#create_repo_error_messages').removeClass('d-none')
+            $('#create_repo_error_messages').html(response.data.message)
+        }
+    })
+})
+
+// delete repository
+$('.delete_repository_button').click(function () {
+    let repo_name = $(this).val()
+    let parent_element_id = $(this).parents("tr:first").attr('id')
+    let parent_element = $('#' + parent_element_id)
+
+    $('#repositories_error_messages').addClass('d-none')
+    axios.delete('repository',{
+        headers: {
+            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+        },
+        params: {
+            repo_name:repo_name
+        }
+    }).then(function (response) {
+        if(response.data.success === 1){
+            parent_element.remove()
+        }
+        else if(response.data.error === 1){
+            $('#repositories_error_messages').removeClass('d-none')
+            $('#repositories_error_messages').html(response.data.message)
+        }
+    })
+})

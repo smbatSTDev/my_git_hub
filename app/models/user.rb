@@ -11,10 +11,11 @@ class User < ApplicationRecord
 
   # custom validation
   def validate_git_access_token
-    client = Octokit::Client.new(access_token: git_access_token)
-
     begin
-      client.user
+      if git_access_token?
+        client = Octokit::Client.new(access_token: git_access_token)
+        client.user
+      end
     rescue Octokit::Unauthorized
       errors.add(:base, "Invalid Git Access Token")
     end

@@ -20,6 +20,8 @@
             .p-2{:class => "text-succes`s"}
               Logged in as #{current_user.email}
             = link_to "Home", root_path, method: :get, :class => 'btn btn-primary mr-2'
+            - if has_git_access_token?
+              = link_to "My Repositories", user_repositories_path, method: :get, :class => 'btn btn-primary mr-2'
             = link_to "My Profile", edit_user_registration_path, method: :get, :class => 'btn btn-primary mr-2'
             = link_to "Search", search_page_path, method: :get, :class => 'btn btn-primary mr-2'
             = form_for(:users, :url => destroy_user_session_path, method: :delete) do |f|

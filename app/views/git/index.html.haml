@@ -1,20 +1,24 @@
-.container
-  = stylesheet_link_tag 'git.css', media: 'all', 'data-turbolinks-track': 'reload'
-  %form
-    .form-group
-      %label{:for => "search_repositories"} Search Repositories
-      %input#search_repositories.form-control{:name => "search_repositories", :placeholder => "Device", :type => "text"}/
-      %input#user_id{:name => "user_id", :type => "hidden", :value => "#{current_user.id}"}/
-  #repos_pagination{:style => "display: none"}
-    / append html here
-  %table.table
-    %thead#git_table_head
-      %tr
-        %th{:scope => "col"} Favorite
-        %th{:scope => "col"} ID
-        %th{:scope => "col"} Repository Name
-        %th{:scope => "col"} Url
-        %th{:scope => "col"} Description
-    %tbody#git_table_body
-  = javascript_include_tag 'github/github', defer: 'defer'
-  = javascript_include_tag 'pagination', defer: 'defer'
+- if has_git_access_token?
+  .container
+    = stylesheet_link_tag 'git.css', media: 'all', 'data-turbolinks-track': 'reload'
+    %form
+      .form-group
+        %label{:for => "search_repositories"} Search Repositories
+        %input#search_repositories.form-control{:name => "search_repositories", :placeholder => "Device", :type => "text"}/
+        %input#user_id{:name => "user_id", :type => "hidden", :value => "#{current_user.id}"}/
+    #repos_pagination{:style => "display: none"}
+      / append html here
+    %table.table
+      %thead#git_table_head
+        %tr
+          %th{:scope => "col"} Favorite
+          %th{:scope => "col"} ID
+          %th{:scope => "col"} Repository Name
+          %th{:scope => "col"} Url
+          %th{:scope => "col"} Description
+      %tbody#git_table_body
+    = javascript_include_tag 'github/github', defer: 'defer'
+    = javascript_include_tag 'pagination', defer: 'defer'
+- else
+  .alert.alert-primary.text-center{:role => "alert"}
+    Please Set Git Access Token in Profile

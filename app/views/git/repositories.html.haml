@@ -1,0 +1,26 @@
+- if has_git_access_token?
+  .container
+    = link_to "Create New Repository", create_repository_path, method: :get, :class => 'btn btn-primary mb-2'
+    .alert.alert-danger.d-none#repositories_error_messages
+    %table.table
+      %thead#git_table_head
+        %tr
+          %th{:scope => "col"} ID
+          %th{:scope => "col"} Full Name
+          %th{:scope => "col"} URL
+          %th{:scope => "col"} Actions
+      %tbody#git_table_body
+        - repositories.each do |repo|
+          %tr{id: repo.id}
+            %td= repo.id
+            %td= repo.full_name
+            %td
+              %a{href: repo.html_url, target: '_blank'}=repo.html_url
+            %td
+              %button.btn.btn-danger.delete_repository_button{type: "button", value: repo.full_name} Delete
+= javascript_include_tag 'github/github', defer: 'defer'
+
+
+
+
+
