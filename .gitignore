@@ -33,5 +33,5 @@
 # Ignore JetBrains config directory
 /.idea
 
-# Ignore env example
-.env.example
+# Ignore env
+.env
