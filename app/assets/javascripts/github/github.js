@@ -128,14 +128,14 @@ $(document).on('change', '#is_favorite_repository' , function(){
 
     if(ischecked){
         axios.post('add-favorite-repository', {
-            repository_id: $(this).val(),
+            repo_id: $(this).val(),
             user_id: user_id,
             authenticity_token: $('[name="csrf-token"]')[0].content
         })
 
     }else{
         axios.post('remove-favorite-repository', {
-            repository_id: $(this).val(),
+            repo_id: $(this).val(),
             user_id: user_id,
             authenticity_token: $('[name="csrf-token"]')[0].content
         })
@@ -151,7 +151,7 @@ $('#create_repository').on('submit', function (e) {
     let is_private = $('input[type=checkbox]')
     let repo_type = ''
     if (is_private.is(':checked')){
-        repo_type = is_private.val()
+        repo_type = 1
     }else{
         repo_type = 0
     }

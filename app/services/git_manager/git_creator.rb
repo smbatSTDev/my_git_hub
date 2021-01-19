@@ -39,34 +39,6 @@ module GitManager
 
     end
 
-    def add_favorite_repository
-      # TODO create validation
-      user_id = @params[:user_id]
-      repository_id = @params[:repository_id]
-
-      user_repository = FavoriteRepository.where(user_id: user_id, repo_id: repository_id).exists?
-
-      unless user_repository
-        favorite_repository = FavoriteRepository.new
-        favorite_repository.user_id = user_id
-        favorite_repository.repo_id = repository_id
-        favorite_repository.save
-        return true
-      end
-
-      false
-    end
-
-    def remove_favorite_repository
-      # TODO create validation
-      user_id = @params[:user_id]
-      repository_id = @params[:repository_id]
-      user_repository = FavoriteRepository.where(user_id: user_id, repo_id: repository_id)
-      user_repository.destroy_all
-
-      true
-    end
-
   end
 
 end

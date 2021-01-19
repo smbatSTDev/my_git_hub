@@ -47,6 +47,8 @@ gem "erb2haml", :group => :development
 
 gem "haml", :group => :development
 
+gem 'rails_param'
+
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
