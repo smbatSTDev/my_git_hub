@@ -49,6 +49,8 @@ gem "haml", :group => :development
 
 gem 'rails_param'
 
+gem 'omniauth-github', '= 1.4.0', :group => :development
+
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do

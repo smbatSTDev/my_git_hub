@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => {registrations: "users"},
+  devise_for :users, :controllers => {registrations: "users", :omniauth_callbacks => "callbacks"},
              :path => '', :path_names => {  edit: 'profile' }
 
   root 'home#index'

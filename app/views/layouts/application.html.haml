@@ -29,4 +29,5 @@
         - else
           = link_to "Register", new_user_registration_path, method: :get, :class => 'btn btn-primary'
           = link_to "Login", new_user_session_path, method: :get, :class => 'btn btn-primary'
+          = link_to "Login With GiHub", user_github_omniauth_authorize_path, method: :post,  :class => 'btn btn-primary'
     = yield
