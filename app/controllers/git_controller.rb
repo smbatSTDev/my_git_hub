@@ -6,6 +6,7 @@ class GitController < ApplicationController
 
 
   include GitManager
+  include Validation
 
   def index
 
