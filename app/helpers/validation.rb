@@ -243,9 +243,10 @@ module Validation
         raise ValidationException.new("#{data[key]} has no #{item_type} items")
       end
 
-      data[key].each do |item|
+      # not rise exception here
+      data[key].each_with_index do |item, index|
         unless item.is_a?(item_type)
-          raise ValidationException.new("#{item} - Not valid  #{item_type}")
+          @error_messages[args[:main_key].to_s + '_' + index.to_s] = "# #{item} - Not valid  #{item_type}"
         end
       end
     end
