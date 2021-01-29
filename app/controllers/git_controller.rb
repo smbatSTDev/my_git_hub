@@ -51,7 +51,7 @@ class GitController < ApplicationController
     repository_id = favorite_repository_params[:repo_id]
     user_repository = FavoriteRepository.where(user_id: user_id, repo_id: repository_id).exists?
     unless user_repository
-      current_user.favorite_repositories.create(repo_id:repository_id)
+      current_user.favorite_repositories.create(repo_id: repository_id)
     end
 
     render json: {success: 1}
@@ -71,10 +71,10 @@ class GitController < ApplicationController
 
   def create_repository_params
     begin
-     param! :repo_name, String, blank: false, required: true, message: "Repository Name is required"
-     param! :repo_name, String, min_length: 5, message: "The Repository Name is too short"
-     param! :repo_type, String, in: %w(1 0), required: true,  message: "Please select repo type"
-     params
+      param! :repo_name, String, blank: false, required: true, message: "Repository Name is required"
+      param! :repo_name, String, min_length: 5, message: "The Repository Name is too short"
+      param! :repo_type, String, in: %w(1 0), required: true, message: "Please select repo type"
+      params
     rescue => error
       render json: {
           error: 1,
@@ -86,8 +86,8 @@ class GitController < ApplicationController
 
   def delete_repository_params
     begin
-     param! :repo_name, String, blank: false, required: true, message: "Repository Name is required"
-     params
+      param! :repo_name, String, blank: false, required: true, message: "Repository Name is required"
+      params
     rescue => error
       render json: {
           error: 1,
