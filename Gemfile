@@ -47,11 +47,15 @@ gem "erb2haml", :group => :development
 
 gem "haml", :group => :development
 
-gem 'rails_param'
+gem 'rails_param', :group => :development
 
 gem 'omniauth-github', '= 1.4.0', :group => :development
 
 gem 'bootsnap', '>= 1.1.0', require: false
+
+gem 'devise_token_auth', :group => :development
+
+gem 'rack-cors', :group => :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

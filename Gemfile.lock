@@ -80,6 +80,11 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise_token_auth (1.1.4)
+      bcrypt (~> 3.0)
+      devise (> 3.5.2, < 5)
+      rails (>= 4.2.0, < 6.1)
+      sprockets (= 3.7.2)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
@@ -160,6 +165,8 @@ GEM
     puma (3.12.6)
     racc (1.5.2)
     rack (2.2.3)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.4.4)
@@ -265,6 +272,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
+  devise_token_auth
   dotenv-rails
   erb2haml
   haml
@@ -274,6 +282,7 @@ DEPENDENCIES
   octokit (~> 4.0)
   omniauth-github (= 1.4.0)
   puma (~> 3.11)
+  rack-cors
   rails (~> 5.2.4, >= 5.2.4.4)
   rails_param
   sass-rails (~> 5.0)

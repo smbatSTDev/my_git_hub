@@ -1,7 +1,9 @@
 class User < ApplicationRecord
+  include DeviseTokenAuth::Concerns::User
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :validatable, :trackable, :omniauthable
 
   validate :validate_git_access_token

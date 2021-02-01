@@ -17,4 +17,15 @@ Rails.application.routes.draw do
   post 'add-favorite-repository', to: 'git#add_favorite_repository'
   post 'remove-favorite-repository', to: 'git#remove_favorite_repository'
 
+
+  # api routes
+  namespace :api do
+    scope :v1 do
+      mount_devise_token_auth_for 'User', at: 'auth', controllers: {
+          sessions: 'v1/auth',
+          registrations: 'v1/registration',
+      }
+    end
+  end
+
 end
